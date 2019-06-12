@@ -1,10 +1,12 @@
 const eventHub = require('../hub');
 
 function uppercase(data) {
-  console.log(data.results.toString('utf8'));
-  let content = data.results.toString().toUpperCase();
-  console.log('FILE CONTENT: ', content);
-  eventHub.emit('write', { content, file: data.file });
+  try {
+    let content = data.results.toString().toUpperCase();
+    eventHub.emit('write', { content, file: data.file });
+  } catch (err) {
+    eventHub.emit('error', err);
+  }
 }
 eventHub.on('upper', uppercase);
 

@@ -1,15 +1,9 @@
 const eventHub = require('../hub');
 
-function log(eventType) {
-  return (payload) => {
-    if (typeof payload === 'undefined') {
-      console.log('didnt find anything');
-      return;
-    }
-
-    console.log(eventType, payload);
-  };
+function log(file) {
+  console.log(`${file} was updated!`);
 }
+
 eventHub.on('log', log);
 
 module.exports = log;

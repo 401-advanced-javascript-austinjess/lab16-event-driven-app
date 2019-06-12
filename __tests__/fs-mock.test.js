@@ -1,8 +1,39 @@
 'use strict';
 
 jest.mock('fs');
+const uppercase = require('../events/handlers/upper');
 
 const fs = require('fs');
+
+describe('Event Handlers', () => {
+  describe('Read', () => {
+    it('should be called and return data if file is good', (done) => {
+      fs.readFile('./some/good/file.txt', (err, data) => {
+        expect(err).not.toBeDefined();
+        expect(data).toBeDefined();
+        done();
+      });
+    });
+  });
+
+  describe('Write', () => {
+    it('should be called and return data if file is good', (done) => {
+      fs.writeFile('./a/good/file.txt', Buffer.from('testing'), (err) => {
+        expect(err).toBeUndefined();
+        done();
+      });
+    });
+  });
+
+  // describe('Upper', () => {
+  //   it('should be called and return the data in all caps', (done) => {
+  //     const test =
+  //     const result = uppercase(test);
+  //     expect(result).toBe('SHOULD BE UPPERCASED');
+  //     done();
+  //   });
+  // });
+});
 
 describe('mock fs', () => {
   describe('writeFile', () => {
