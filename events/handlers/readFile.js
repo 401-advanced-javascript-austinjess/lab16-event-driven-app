@@ -4,8 +4,12 @@ const readFileAsync = promisify(fs.readFile);
 const eventHub = require('../hub');
 
 async function readFile(file) {
-  let results = await readFileAsync(file);
-  eventHub.emit('upper', { results, file });
+  try {
+    let results = await readFileAsync(file);
+    eventHub.emit('upper', { results, file });
+  } catch (err) {
+    eventHub.emit('error', err);
+  }
 }
 eventHub.on('read', readFile);
 

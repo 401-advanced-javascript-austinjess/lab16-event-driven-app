@@ -4,9 +4,12 @@ const writeFileAsync = promisify(fs.writeFile);
 const eventHub = require('../hub');
 
 async function writeFile(data) {
-  console.log('WRITE FILE DATA: ', data);
-  await writeFileAsync(data.file, Buffer.from(data.content));
-  eventHub.emit('log', `${data.file} was updated!`);
+  try {
+    await writeFileAsync(data.file, Buffer.from(data.content));
+    eventHub.emit('log', data.file);
+  } catch (err) {
+    eventHub.emit('error', err);
+  }
 }
 eventHub.on('write', writeFile);
 

@@ -3,6 +3,7 @@ require('./events/handlers/readFile');
 require('./events/handlers/upper');
 require('./events/handlers/writeFile');
 require('./events/handlers/logger');
+require('./events/handlers/error');
 
 const eventHub = require('./events/hub');
 
