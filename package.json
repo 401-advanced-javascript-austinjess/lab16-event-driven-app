@@ -10,7 +10,8 @@
   "author": "",
   "license": "MIT",
   "dependencies": {
-    "jest": "^24.8.0"
+    "jest": "^24.8.0",
+    "jsdoc": "^3.6.2"
   },
   "devDependencies": {
     "eslint": "^5.16.0",

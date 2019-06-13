@@ -10,7 +10,7 @@ exports.readFile = (file, cb) => {
     throw TypeError('"cb" must be a function');
   }
 
-  if(file.match(/bad/i)) {
+  if (file.match(/bad/i)) {
     return delay(cb, 'Invalid File');
   }
 
@@ -34,6 +34,10 @@ exports.writeFile = (file, buffer, cb) => {
 
   written[file] = buffer;
   delay(cb, undefined, undefined);
+};
+
+exports.uppercase = (content) => {
+  return content.toString().toUpperCase();
 };
 
 function delay(callback, err, result) {
